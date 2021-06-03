@@ -8,7 +8,7 @@
  *
  * The order XPASS -> YPASS -> ZPASS must be kept.
  * It is possible to add a "prepass" (initialization pass) that would make the order of X,Y,Z irrelevant, but doing so would increase the complexity by up to 33%.
- * It should be trivial to modify this implementation for other dimensions or for the ability to run it in parallel (with up to size^2) threads.
+ * It should be trivial to modify this implementation for other dimensions, non cubical arrays or for the ability to run it in parallel (with up to size^2) threads.
  *
  * The complexity of this algorithm is O(n) for n elements in boolArray, specifically: 6 * n
  * This algorithm iterates over the rows along each axis separately. It does so twice, one in each direction.
