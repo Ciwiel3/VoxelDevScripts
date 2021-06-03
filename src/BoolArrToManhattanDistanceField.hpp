@@ -3,7 +3,7 @@
 
 /*
  * The algorithm implemented in this file converts a flattened 3D bool array into a flattened 3D Manhattan distance field in linear time.
- * After executing all three passes (XPASS, YPASS, ZPASS) once, the conversion will be complete.
+ * After executing all three passes (XPASS, YPASS, ZPASS) once, the conversion is completed.
  * Every entry in o_distanceField will contain the Manhattan distance to the closest corresponding "true" in the bool array (0 if it is true itself).
  *
  * The order XPASS -> YPASS -> ZPASS must be kept.
@@ -11,7 +11,7 @@
  * It should be trivial to modify this implementation for other dimensions, non cubical arrays or for the ability to run it in parallel (with up to size^2) threads.
  *
  * The complexity of this algorithm is O(n) for n elements in boolArray, specifically: 6 * n
- * This algorithm iterates over the rows along each axis separately. It does so twice, one in each direction.
+ * This algorithm iterates over the rows along each axis separately. It does so twice, once in each direction.
  */
 
 // Note that size is the side length of the flattened 3D array, not the total count of it's members, which is size^3.
