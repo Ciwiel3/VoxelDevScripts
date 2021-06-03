@@ -99,22 +99,19 @@ void boolArrToManhattanDF(const bool* boolArr, int* o_distanceField, int size)
 // here is an example of how to use it
 void main()
 {
-    int size = 64;
+    const int SIZE = 64;
 
-    bool* boolArr = new bool[size * size * size];
-    memset(&boolArr, 0, size*size*size*sizeof(bool));
+    bool[SIZE * SIZE * SIZE] boolArr;
+    memset(&boolArr, 0, SIZE * SIZE * SIZE * sizeof(bool));
 
     // TODO: fill the bool array with (meaningful) data ...
 
     // note that we don't need to initialize the distance field, as our XPASS function overwrites any old data
-    int* distanceField = new int[size * size * size];
+    int[SIZE * SIZE * SIZE] distanceField;
 
-    boolArrToManhattanDF(boolArr, distanceField, size);
+    boolArrToManhattanDF(&boolArr, &distanceField, SIZE);
 
     // TODO: do something with your distance field :D
-
-    delete[] boolArr;
-    delete[] distanceField;
 }
 
 #endif //VOXELDEVSCRIPTS_DISTANCEFIELD_H
