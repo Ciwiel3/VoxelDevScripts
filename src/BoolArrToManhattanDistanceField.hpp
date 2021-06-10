@@ -3,15 +3,15 @@
 
 /*
  * The algorithm implemented in this file converts a flattened 3D bool array into a flattened 3D Manhattan distance field in linear time.
- * After executing all three passes (XPASS, YPASS, ZPASS) once, the conversion will be complete.
+ * After executing all three passes (XPASS, YPASS, ZPASS) once, the conversion is completed.
  * Every entry in o_distanceField will contain the Manhattan distance to the closest corresponding "true" in the bool array (0 if it is true itself).
  *
  * The order XPASS -> YPASS -> ZPASS must be kept.
  * It is possible to add a "prepass" (initialization pass) that would make the order of X,Y,Z irrelevant, but doing so would increase the complexity by up to 33%.
- * It should be trivial to modify this implementation for other dimensions or for the ability to run it in parallel (with up to size^2) threads.
+ * It should be trivial to modify this implementation for other dimensions, non cubical arrays or for the ability to run it in parallel (with up to size^2) threads.
  *
  * The complexity of this algorithm is O(n) for n elements in boolArray, specifically: 6 * n
- * This algorithm iterates over the rows along each axis separately. It does so twice, one in each direction.
+ * This algorithm iterates over the rows along each axis separately. It does so twice, once in each direction.
  */
 
 // Note that size is the side length of the flattened 3D array, not the total count of it's members, which is size^3.
@@ -96,22 +96,19 @@ void boolArrToManhattanDF(const bool* boolArr, int* o_distanceField, int size)
 // here is an example of how to use it
 void main()
 {
-    int size = 64;
+    const int SIZE = 64;
 
-    bool* boolArr = new bool[size * size * size];
-    memset(&boolArr, 0, size*size*size*sizeof(bool));
+    bool[SIZE * SIZE * SIZE] boolArr;
+    memset(&boolArr, 0, SIZE * SIZE * SIZE * sizeof(bool));
 
     // TODO: fill the bool array with (meaningful) data ...
 
     // note that we don't need to initialize the distance field, as our XPASS function overwrites any old data
-    int* distanceField = new int[size * size * size];
+    int[SIZE * SIZE * SIZE] distanceField;
 
-    boolArrToManhattanDF(boolArr, distanceField, size);
+    boolArrToManhattanDF(&boolArr, &distanceField, SIZE);
 
     // TODO: do something with your distance field :D
-
-    delete[] boolArr;
-    delete[] distanceField;
 }
 
 #endif //VOXELDEVSCRIPTS_DISTANCEFIELD_H
