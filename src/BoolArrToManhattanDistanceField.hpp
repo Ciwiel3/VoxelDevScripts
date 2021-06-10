@@ -23,12 +23,12 @@ void boolArrToManhattanDFXPASS(const bool* boolArr, int* o_distanceField, int si
     {
         for (int y = 0; y < size; y++)
         {
-            // we first initialize the first distanceField element of the row with 0 or 2*size based on the bollArray's value
-            o_distanceField[z * size2 + y * size + 0] = boolArr[z * size2 + y * size + 0] ? 0 : size + size;
+            // we first initialize the first distanceField element of the row with 0 or 3*size based on the bollArray's value
+            o_distanceField[z * size2 + y * size + 0] = boolArr[z * size2 + y * size + 0] ? 0 : 3 * size;
 
             // we then iterate the row, setting each element to 0 or incrementing it by one over the previous entry
             for (int x = 1; x < size; x++)
-                o_distanceField[z * size2 + y * size + x] = boolArr[z * size2 + y * size + x] ? 0 : 1 + o_distanceField[z * size2 + y * size + (x - 1)];
+                o_distanceField[z * size2 + y * size + x] = boolArr[z * size2 + y * size + x] ? 0 : 1 + o_distanceField[z * size2 + y * size + (x - 1)] > 3 * size ? 3 * size : 1 + o_distanceField[z * size2 + y * size + (x - 1)];
 
             // distance field values are now correct in increasing direction "behind" values that are true, but incorrect "before" them.
             // we iterate in opposite direction to adjust the distance values "before" values that are true.
@@ -80,10 +80,7 @@ void boolArrToManhattanDFZPASS(int* o_distanceField, int size)
             {
                 if (o_distanceField[(z + 1) * size2 + y * size + x] < o_distanceField[z * size2 + y * size + x])
                     o_distanceField[z * size2 + y * size + x] = 1 + o_distanceField[(z + 1) * size2 + y * size + x];
-                // since this is the final pass we now also correct values that are out of bounds, this only happens if all entries in the bool array are 'false'
-                o_distanceField[z * size2 + y * size + x] = o_distanceField[z * size2 + y * size + x] > maxDist ? maxDist : o_distanceField[z * size2 + y * size + x];
             }
-            o_distanceField[(size - 1) * size2 + y * size + x] = o_distanceField[(size - 1) * size2 + y * size + x] > maxDist ? maxDist : o_distanceField[(size - 1) * size2 + y * size + x];
         }
 }
 
