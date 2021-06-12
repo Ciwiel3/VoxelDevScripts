@@ -12,4 +12,4 @@ Scripts currently in this Repo:
 
 File|Description
 ----|-----------
-[BoolArrToManhattanDistanceField](src/BoolArrToManhattanDistanceField.hpp)|Converts a bool array to a [Manhattan](https://en.wikipedia.org/wiki/Taxicab_geometry) distance field in linear time. This may be useful for ray tracing, collision checking, or for building a flow field.
+[BoolArrToManhattanDistanceField](src/BoolArrToManhattan.h)|Converts a bool array to a [Manhattan](https://en.wikipedia.org/wiki/Taxicab_geometry) distance field in linear time. This may be useful for ray tracing, collision checking, or for building a flow field.
