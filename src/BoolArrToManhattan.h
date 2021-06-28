@@ -1,6 +1,10 @@
 #ifndef VOXELDEVSCRIPTS_DISTANCEFIELD_H
 #define VOXELDEVSCRIPTS_DISTANCEFIELD_H
 
+#include <stdbool.h>
+#include <string.h>
+#include <stdint.h>
+
 /*
  * The algorithm implemented in this file converts a flattened 3D bool array into a flattened 3D Manhattan distance field in linear time.
  * After executing all three passes (XPASS, YPASS, ZPASS) once, the conversion is completed.
@@ -10,7 +14,7 @@
  * It is possible to add a "prepass" (initialization pass) that would make the order of X,Y,Z irrelevant, but doing so would increase the complexity by up to 33%.
  * It should be trivial to modify this implementation for other dimensions, non cubical arrays or for the ability to run it in parallel (with up to size^2) threads.
  *
- * The complexity of this algorithm is O(n) for n elements in boolArray, specifically: 6 * n
+ * The complexity of this algorithm is O(n) for n elements in boolArray.
  * This algorithm iterates over the rows along each axis separately. It does so twice, once in each direction.
  */
 
@@ -91,6 +95,26 @@ static void boolArrToManhattanDF(const bool* boolArr, uint8_t* o_distanceField, 
     boolArrToManhattanDFXPASS(boolArr, o_distanceField, sizeX, sizeY, sizeZ);
     boolArrToManhattanDFYPASS(o_distanceField, sizeX, sizeY, sizeZ);
     boolArrToManhattanDFZPASS(o_distanceField, sizeX, sizeY, sizeZ);
+}
+
+// Usage Example
+void testBoolArrToManhattan()
+{
+    const int SIZE = 64;
+
+    bool boolArr[SIZE * SIZE * SIZE];
+    memset(&boolArr, 0, SIZE * SIZE * SIZE * sizeof(bool));
+
+    // TODO: fill the bool array with (meaningful) data ...
+
+    // note that we don't need to initialize the distance field, as our XPASS function overwrites any old data
+    uint8_t distanceField[SIZE * SIZE * SIZE];
+
+    boolArrToManhattanDF(boolArr, distanceField, SIZE, SIZE, SIZE);
+
+    // TODO: do something with the distance field :D
+
+    return 0;
 }
 
 #endif //VOXELDEVSCRIPTS_DISTANCEFIELD_H
