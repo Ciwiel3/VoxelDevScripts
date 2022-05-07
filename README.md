@@ -13,3 +13,4 @@ Scripts currently in this Repo:
 File|Description
 ----|-----------
 [BoolArrToManhattanDistanceField](src/BoolArrToManhattan.h)|Converts a bool array to a [Manhattan](https://en.wikipedia.org/wiki/Taxicab_geometry) distance field in linear time. This may be useful for ray tracing, collision checking, or for building a flow field.
+[Generic Vector Math](src/cpmath.h)|Single header vector math lib, offering vector types (2-4 components, float, int, uint), similar to glsl and basic arithmetic on these types. Uses C11 generics for nice syntax and SEE intrinsics for vec3 and vec4 types. For a more detailed description read the comment at the top of the file. I use this for my own game, but can not quarantee that it's suited for your application. Matrix math is not included in this yet but might be added in the future.
