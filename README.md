@@ -1,5 +1,5 @@
 # VoxelDevScripts
-A collection of small functions/algorithms particularly useful for voxel game dev. Code will be in C++ and will be kept minimalistic and well commented so you can either copy&paste or implement/adopt it yourself. 
+A collection of small functions/algorithms particularly useful for voxel game dev. Code will be in C and will be kept minimalistic and well commented so you can either copy&paste or implement/adopt it yourself. 
 
 Because they are simple functions - meant to be copy&pasted - and not libraries, they will reside in an appropriately named header file. A basic usage example is given at the bottom.
 
